@@ -124,9 +124,8 @@ const useStyles = makeStyles((theme) => ({
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-  function handleSideBarItemSelect(item){
-    console.log(`Dashboard ${item}`);
-
+  function handleSideBarItemSelect(item){ 
+     setCategory(item);
   }
 
   return (
@@ -165,7 +164,7 @@ const useStyles = makeStyles((theme) => ({
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-         <Cards />
+         <Cards  data = {props.data[0]} category={category} />
       </main>
     </div>
   );

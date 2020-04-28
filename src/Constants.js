@@ -37,9 +37,10 @@ const testedNegativeMessage = "Number of people tested negative of COVID-19";
 const hospitalizedMessage = "Number of people hospitalized from COVID-19";
 const ventilatorMessage = "Number of people on ventilator from COVID-19";
 const icuMessage = "Number of people in ICU from COVID-19";
+const totalTestedMessage = "Number of people tested so far";
 
 export {
-    defaultCategory, hospitalisation, critical, tests, recoveredMessage,
-    deathMessage, testedPositiveMessage, testedNegativeMessage, hospitalizedMessage, ventilatorMessage, icuMessage,
+    defaultCategory, hospitalisation, critical, tests, recoveredMessage, serious,
+    deathMessage, testedPositiveMessage, testedNegativeMessage, hospitalizedMessage, ventilatorMessage, icuMessage, totalTestedMessage,
     recoverySubcategory, hospitalisationSubCategory, seriousSubCategory, criticalSubCategory, testsSubCategory
 };

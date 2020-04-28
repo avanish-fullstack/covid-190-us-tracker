@@ -23,7 +23,7 @@ const SideBar = (props) => {
         </ListItemIcon>
         <ListItemText primary="Recovery and Deaths" />
       </ListItem>
-      <ListItem button onClick={() => handleClick('hospitalization')}>
+      <ListItem button onClick={() => handleClick('Hospitalization')}>
         <ListItemIcon>
           <LocalHospitalIcon />
         </ListItemIcon>
