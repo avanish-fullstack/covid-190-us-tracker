@@ -165,6 +165,8 @@ const useStyles = makeStyles((theme) => ({
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
          <Cards  data = {props.data[0]} category={category} />
+         <Chart timeSeries= {props.data}  cat = {category} />
+         <Orders  />
       </main>
     </div>
   );

@@ -6,9 +6,8 @@ const baseUrl = "http://covidtracking.com/api/us/";
 const getDailyData = async () => {
     const dailyDataUrl = `${baseUrl}/daily`
     try {
-
         const { data } = await axios.get(dailyDataUrl);
-        return data;
+        return data.slice(0, 30).reverse();
     }
     catch (e) {
         console.log(e)
