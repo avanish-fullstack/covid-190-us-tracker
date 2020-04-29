@@ -14,8 +14,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import SideBar from './SideBar';
 import Chart from './Chart';
 import Cards from './Cards';
-import Orders from './Orders';
+import DataTable from './DataTable';
 import {defaultCategory} from "../Constants";
+import {getCategorySummary} from '../API/index';
 
 function Copyright() {
   return (
@@ -115,6 +116,7 @@ const useStyles = makeStyles((theme) => ({
   const classes = useStyles();
   const [open, setOpen] = useState(true);
   const [category, setCategory] = useState(defaultCategory);
+  const categoryData = getCategorySummary(props.data[0], category);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -122,7 +124,6 @@ const useStyles = makeStyles((theme) => ({
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   function handleSideBarItemSelect(item){ 
      setCategory(item);
@@ -164,9 +165,9 @@ const useStyles = makeStyles((theme) => ({
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-         <Cards  data = {props.data[0]} category={category} />
-         <Chart timeSeries= {props.data}  cat = {category} />
-         <Orders  />
+         <Cards  data = {props.data[0]} category={categoryData} />
+         <Chart timeSeries= {props.data}  category = {categoryData} />
+         <DataTable data= {props.data} category={categoryData}  />
       </main>
     </div>
   );

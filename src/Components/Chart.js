@@ -6,15 +6,37 @@ import { Tooltip } from '@material-ui/core';
 
 export default function Chart(props) {
   const theme = useTheme();
-   
+
+  function getTitle() {
+    let subCategories = props.category.map(c => c.subCategory);
+    return subCategories.join(" / ");
+  }
+
+  function getStrokeColor(subCategory) {
+    switch (subCategory) {
+      case "Recovery":
+      case "Infected":
+      case "Tested":
+        return "rgba(0, 0, 255, 0.7)";
+      case "Hospitalized":
+      case "Negative":
+        return "rgba(0, 255, 0, 0.7)";
+      case "Death":
+      case "ICU":
+      case "Ventilator":
+      case "Positive":
+        return "rgba(255, 0, 0, 0.7)";
+    }
+
+  }
   return (
     <React.Fragment>
-      <Title>{props.cat}</Title>
+      <Title>Last 30 days {getTitle()}</Title>
       <ResponsiveContainer>
         <AreaChart
-          width= {500}
+          width={500}
           height={400}
-          data={props.timeSeries}
+          data={props.timeSeries.reverse()}
           margin={{
             top: 16,
             right: 16,
@@ -22,18 +44,19 @@ export default function Chart(props) {
             left: 24,
           }}
         >
-          <XAxis dataKey="dateChecked" />
+          <XAxis dataKey="dateChecked" tick={false} />
           <YAxis>
             <Label
-              angle={270}
+              angle={100}
               position="left"
               style={{ textAnchor: 'middle', fill: theme.palette.text.primary }}
-            >            
+            >
             </Label>
           </YAxis>
-          <Tooltip/>
-          <Area type="monotone" dataKey="recovered" stroke="#8884d8" fill="#8884d8" />
-          <Area type="monotone" dataKey="death" stroke="#82ca9d" fill="#82ca9d" />
+          <Tooltip />
+          {props.category.map(item =>
+            <Area type="monotone" dataKey={item.key} stroke={getStrokeColor(item.subCategory)} fill={getStrokeColor(item.subCategory)} />
+          )};
         </AreaChart>
       </ResponsiveContainer>
     </React.Fragment>

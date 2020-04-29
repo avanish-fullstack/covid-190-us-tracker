@@ -2,7 +2,6 @@ import React from "react";
 import { Card, CardContent, Typography, Grid } from "@material-ui/core";
 import CountUp from "react-countup";
 import { makeStyles } from '@material-ui/core/styles';
-import { getCategorySummary } from "../API/index";
 
 const useStyles = makeStyles({
   depositContext: {
@@ -32,10 +31,7 @@ const useStyles = makeStyles({
 });
 
 const Cards = (props) => {
-  const classes = useStyles();
-  let categoryData = [];
-
-  categoryData = getCategorySummary(props.data, props.category);
+  const classes = useStyles();  
 
   function getClassNames(category) {
     let catClass = "";
@@ -70,15 +66,14 @@ const Cards = (props) => {
         catClass = `${classes.recovered}`;
         break;
     }
-
     return `${baseClass} ${catClass}`;
-
   }
 
+  console.log(props.category);
   return (
     <div className={classes.container}>
       <Grid container spacing={3} justify="left">
-        {categoryData.map((item) =>
+        {props.category.map((item) =>
           <Grid key={item.subCategory} item component={Card} xs={12} md={3} className={getClassNames(item.subCategory)} >
             <CardContent>
               <Typography color="textSecondary" gutterBottom>{item.subCategory}</Typography>
